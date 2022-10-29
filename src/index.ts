@@ -26,3 +26,27 @@ if(!process.env.PORT){
 const PORT: number = parseInt(process.env.PORT as string, 10)
 
 const app = express()
+
+
+
+/**
+ * App Configuration
+ * Define Middleware eg helmet (small middleware func that HTTP response headers)(provides defaults lik DNS prefetch control, frameguard, hidee powered-by, HSTS, IE No Open, DOn't Sniff MImetype and XSS filter)
+ * CORS() - enables cors requests. 
+ * Express json() - you parse incoming requests with json payloads to populate the request obj with a new body obj containing the parsed data
+ */
+//mount middleware functions from packages imported into the entry point module
+app.use(helmet())
+app.use(cors())
+app.use(express.json())
+
+
+/**
+ * Server Activation
+ * Creating Express Server
+ * 
+ */
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`)
+})
+
