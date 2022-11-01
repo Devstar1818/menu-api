@@ -49,18 +49,7 @@ app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`)
 })
 
-/**/
-
-/**
- * Improve TS  Workflow by installing ts-node-dev - no need to recompile the entire project whenever there's a change in its source code. 
- * npm i -D te-node-dev
- * - ts-node-dev restarts a target Node.js process when oof the required files change.
+/** Create a Node js service with TS
+ *  ---touch src/items/items.service.ts
  * 
- * ts-node-dev breakdown 
- * --respawn: keep watching for changes after the script has exited
- * --pretty: uses pretty diagnostic formatter (TS_Node_PRETTY)
- * --transpile-only: use TS's faster transpileModule (TS-NODE_TRANSPILE_ONLY)
- * src/index.ts : applications entry file
- * 
- * ts-node-dev is a tweaked version of node-dev  that uses ts-node under the hood
  */
