@@ -46,3 +46,16 @@ export const findAll = async (): Promise<Item[]> => Object.values(items);
 
 //find receives an 'id' parameter that it uses to look up and return a single store element if found
 export const find = async (id: number): Promise<Item> => items[id];
+
+//create
+export const create = async (newItem: BaseItem): Promise<Item> => {
+
+  const id = new Date().valueOf()
+
+  items[id] = {
+    id, 
+    ...newItem,
+
+  }
+  return items[id];
+}
