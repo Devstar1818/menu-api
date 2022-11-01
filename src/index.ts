@@ -49,7 +49,3 @@ app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`)
 })
 
-/** Create a Node js service with TS
- *  ---touch src/items/items.service.ts
- * 
- */
