@@ -47,7 +47,8 @@ export const findAll = async (): Promise<Item[]> => Object.values(items);
 //find receives an 'id' parameter that it uses to look up and return a single store element if found
 export const find = async (id: number): Promise<Item> => items[id];
 
-//create
+//create method recieves an object type of 'BaseItem' as an argument, providing all the required values to define a new item in the store, except the item's 'id' 
+// to create a unique 'id' value for each new element added to the store, you use the value of the current 'Date' based on the number of milliseconds between 1 jan 1970 00:00:00 UTC and the current time
 export const create = async (newItem: BaseItem): Promise<Item> => {
 
   const id = new Date().valueOf()
@@ -57,5 +58,21 @@ export const create = async (newItem: BaseItem): Promise<Item> => {
     ...newItem,
 
   }
+  return items[id];
+}
+
+//Update method
+export const update = async (
+  id: number,
+  itemUpdate: BaseItem
+): Promise<Item | null> => {
+  const item = await find(id);
+
+  if(!item) {
+    return null;
+  }
+
+  items[id] = {id, ...itemUpdate};
+
   return items[id];
 }
