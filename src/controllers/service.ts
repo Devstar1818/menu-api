@@ -68,7 +68,7 @@ export const update = async (
     return null;
   }
 
-  items[id] = {id, ...itemUpdate};
+  items[id] = {...item, id, ...itemUpdate};
 
   return items[id];
 }
