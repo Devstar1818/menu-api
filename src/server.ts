@@ -36,8 +36,12 @@ app.use(helmet())
 app.use(cors())
 app.use(express.json())
 app.use("/api/menu/items", routeApi)
-app.use(errorHandler);
+
+// Handle invalid routes
 app.use(notFoundHandler);
+
+// Handle App errors
+app.use(errorHandler);
 
 /**
  * Server Activation
