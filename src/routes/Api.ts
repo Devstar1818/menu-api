@@ -1,7 +1,7 @@
 /**
  * Require External Modules and Interfaces
  */
-import express, {Request, Response } from "express"
+import express, { Request, Response } from "express"
 import * as ItemService from "../controllers/service"
 import { BaseItem, Item } from "../controllers/item.interface"
 //(importing packages and two of it's internal type definitions, req and res)
@@ -43,7 +43,8 @@ routeApi.get("/:id", async (req: Request, res: Response) => {
   } catch (e: any) {
     res.status(500).send(e.message);
   }
-});routeApi.get("/:id", async (req: Request, res: Response) => {
+});
+routeApi.get("/:id", async (req: Request, res: Response) => {
   const id: number = parseInt(req.params.id, 10);
 
   try {
@@ -61,16 +62,16 @@ routeApi.get("/:id", async (req: Request, res: Response) => {
 
 
 //POST items
-routeApi.post("/" , async (req: Request,res: Response) => {
-try {
-  const item: BaseItem = req.body;
+routeApi.post("/", async (req: Request, res: Response) => {
+  try {
+    const item: BaseItem = req.body;
 
-  const newItem = await ItemService.create(item);
+    const newItem = await ItemService.create(item);
 
-  res.status(201).json(newItem);
-} catch (e: any) {
-  res.status(500).send(e.message)
-}
+    res.status(201).json(newItem);
+  } catch (e: any) {
+    res.status(500).send(e.message)
+  }
 });
 
 //PUT items/:id
@@ -81,20 +82,20 @@ routeApi.put("/:", async (req: Request, res: Response) => {
 
     const existingItem: Item = await ItemService.find(id);
 
-    if(existingItem) {
-const updatedItem = await ItemService.update(id, itemUpdate);
-return res.status(200).json(updatedItem);
+    if (existingItem) {
+      const updatedItem = await ItemService.update(id, itemUpdate);
+      return res.status(200).json(updatedItem);
 
     }
-  const newItem = await ItemService.create(itemUpdate)
-res.status(201).json(newItem);
+    const newItem = await ItemService.create(itemUpdate)
+    res.status(201).json(newItem);
   } catch (e: any) {
     res.status(500).send(e.message)
   }
 });
 
 //DELETE items/:id
- routeApi.delete("/:id", async (req: Request, res: Response) => {
+routeApi.delete("/:id", async (req: Request, res: Response) => {
   try {
     const id: number = parseInt(req.params.id, 10);
 
@@ -102,4 +103,4 @@ res.status(201).json(newItem);
   } catch (e: any) {
     res.status(500).send(e.message);
   }
- });
+});
